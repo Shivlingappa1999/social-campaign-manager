@@ -1,5 +1,5 @@
 # social-campaign-manager
-
+![Dashboard Screenshot](images/dashboard.JPG)
 Full-stack Django app with PostgreSQL (Supabase), REST APIs, dashboard &amp; external API
 
 # Social Campaign Manager
@@ -56,6 +56,7 @@ The project demonstrates CRUD operations, REST APIs, data visualization, and thi
 ## 📊 Dashboard
 
 ![Dashboard Screenshot](images/dashboard.JPG)
+
 
 
 
