@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Dashboard Overview</h1>
+
+<!-- KPI CARDS -->
+<div class="dashboard-cards">
+    <div class="stat-card blue">
+        <p>Total Campaigns</p>
+        <h2 id="totalCampaigns">0</h2>
+    </div>
+
+    <div class="stat-card green">
+        <p>Active Campaigns</p>
+        <h2 id="activeCampaigns">0</h2>
+    </div>
+
+    <div class="stat-card purple">
+        <p>Total Budget</p>
+        <h2 id="totalBudget">₹0</h2>
+    </div>
+</div>
+
+<!-- CHART + WEATHER -->
+<div class="dashboard-grid">
+
+    <!-- Chart -->
+    <div class="panel">
+        <h3>Campaign Summary</h3>
+        <canvas id="campaignChart"></canvas>
+    </div>
+
+    <!-- Weather -->
+    <div class="panel">
+        <h3>Weather (Campaign City)</h3>
+        <div id="weatherBox" class="weather-box">
+            Loading weather...
+        </div>
+    </div>
+
+</div>
+
+<script>
+let chartInstance = null;
+
+// Dashboard API
+axios.get("/api/dashboard/")
+.then(res => {
+    const d = res.data;
+
+    document.getElementById("totalCampaigns").innerText = d.total_campaigns;
+    document.getElementById("activeCampaigns").innerText = d.active_campaigns;
+    document.getElementById("totalBudget").innerText = "₹" + d.total_budget;
+
+    const ctx = document.getElementById("campaignChart");
+
+    if (chartInstance) chartInstance.destroy();
+
+    chartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Total", "Active"],
+            datasets: [{
+                label: "Campaign Count",
+                data: [d.total_campaigns, d.active_campaigns],
+                backgroundColor: ["#2563eb", "#16a34a"],
+                borderRadius: 8,
+                barThickness: 60
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 }
+                }
+            }
+        }
+    });
+});
+
+// Weather API
+axios.get("/api/weather/Delhi/")
+.then(res => {
+    const w = res.data;
+    document.getElementById("weatherBox").innerHTML = `
+        <p><strong>City:</strong> ${w.name}</p>
+        <p><strong>Temperature:</strong> ${w.main.temp} °C</p>
+        <p><strong>Condition:</strong> ${w.weather[0].description}</p>
+        <p><strong>Humidity:</strong> ${w.main.humidity}%</p>
+    `;
+})
+.catch(() => {
+    document.getElementById("weatherBox").innerText = "Weather data unavailable";
+});
+</script>
+
+{% endblock %}

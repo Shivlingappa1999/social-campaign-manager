@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Campaign Form{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<form method="post" class="form">
+    {% csrf_token %}
+
+    <label>Campaign Name</label>
+    <input type="text" name="name" value="{{ campaign.name|default:'' }}" required>
+
+    <label>Platform</label>
+    <select name="platform">
+        <option {% if campaign.platform == "Instagram" %}selected{% endif %}>Instagram</option>
+        <option {% if campaign.platform == "Facebook" %}selected{% endif %}>Facebook</option>
+        <option {% if campaign.platform == "Twitter" %}selected{% endif %}>Twitter</option>
+    </select>
+
+    <label>Budget</label>
+    <input type="number" name="budget" value="{{ campaign.budget|default:0 }}" required>
+
+    <label>Start Date</label>
+    <input type="date" name="start_date" value="{{ campaign.start_date|date:'Y-m-d' }}" required>
+
+    <label>End Date</label>
+    <input type="date" name="end_date" value="{{ campaign.end_date|date:'Y-m-d' }}" required>
+
+    <label>Status</label>
+    <select name="status">
+        <option {% if campaign.status == "Active" %}selected{% endif %}>Active</option>
+        <option {% if campaign.status == "Paused" %}selected{% endif %}>Paused</option>
+        <option {% if campaign.status == "Completed" %}selected{% endif %}>Completed</option>
+    </select>
+
+    <label>Target City</label>
+    <input type="text" name="city" value="{{ campaign.city|default:'' }}" required>
+
+    <button type="submit">Save Campaign</button>
+</form>
+{% endblock %}

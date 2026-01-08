@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Campaigns{% endblock %}
+
+{% block content %}
+<h1>Campaign List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Platform</th>
+            <th>Status</th>
+            <th>Budget</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for campaign in campaigns %}
+        <tr>
+            <td>{{ campaign.name }}</td>
+            <td>{{ campaign.platform }}</td>
+            <td>{{ campaign.status }}</td>
+            <td>{{ campaign.budget }}</td>
+            <td>{{ campaign.city }}</td>
+            <td>
+                <a href="/campaigns/edit/{{ campaign.id }}/">Edit</a>
+                |
+                <a href="/campaigns/delete/{{ campaign.id }}/"
+                   onclick="return confirm('Are you sure?')">
+                   Delete
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No campaigns found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
