@@ -1,7 +1,4 @@
 # Social Campaign Manager
-
-![Dashboard Screenshot](images/dashboard.JPG)
-
 Full-stack Django application with PostgreSQL (Supabase), REST APIs, dashboard visualization, and third-party API integration.
 
 
@@ -55,10 +52,6 @@ The project demonstrates CRUD operations, REST APIs, data visualization, and thi
 
 ### External API
 - OpenWeather API
-
-## 📊 Dashboard
-
-![Dashboard Screenshot](images/dashboard.JPG)
 
 
 
