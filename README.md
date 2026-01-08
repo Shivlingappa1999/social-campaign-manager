@@ -55,7 +55,8 @@ The project demonstrates CRUD operations, REST APIs, data visualization, and thi
 
 ## 📊 Dashboard
 
-![Dashboard Screenshot](Dashboard.png)
+![Dashboard Screenshot](images/dashboard.JPG)
+
 
 
 ```
