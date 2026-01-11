@@ -98,16 +98,31 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default1": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME","postgres"),
+#         "USER": os.getenv("DB_USER","postgres"),
+#         "PASSWORD": os.getenv("DB_PASSWORD","WTVjZ3*%zGdd&T,"),
+#         "HOST": os.getenv("DB_HOST","db.hmftdpnpnpnunqgveuhh.supabase.co"),
+#         "PORT": os.getenv("DB_PORT", "5432"),
+#     }
+# }
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME","postgres"),
-        "USER": os.getenv("DB_USER","postgres"),
-        "PASSWORD": os.getenv("DB_PASSWORD","WTVjZ3*%zGdd&T,"),
-        "HOST": os.getenv("DB_HOST","db.hmftdpnpnpnunqgveuhh.supabase.co"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": "postgres",
+        "USER": "postgres.hmftdpnpnpnunqgveuhh",
+        "PASSWORD": os.environ.get("DB_PASSWORD","WTVjZ3*%zGdd&T,"),
+        "HOST": "aws-1-ap-southeast-1.pooler.supabase.com",
+        "PORT": "6543",
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
+
 
 
 
