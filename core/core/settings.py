@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+#local
 # DATABASES = {
 #     "default1": {
 #         "ENGINE": "django.db.backends.postgresql",
@@ -119,6 +119,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
+#Global
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
