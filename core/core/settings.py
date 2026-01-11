@@ -28,11 +28,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-x!8%%k%_v0g9s^&p$r(0$#@z4sy_)o%85e)rmiy#kt+iep6h3q")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = False
+# DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "social-campaign-manager-production.up.railway.app",
+    ".up.railway.app",
+    "localhost",
+    "127.0.0.1",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://social-campaign-manager-production.up.railway.app",
+]
+
 
 
 # Application definition
@@ -119,9 +129,11 @@ DATABASES = {
         "PORT": "6543",
         "OPTIONS": {
             "sslmode": "require",
+            "connect_timeout": 10,
         },
     }
 }
+
 
 
 
